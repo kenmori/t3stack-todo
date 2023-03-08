@@ -14,11 +14,13 @@ export const updateTaskSchema = z.object({
   body: z.string().max(5)
 })
 
-export type updateTaskSchema = z.TypeOf<typeof updateTaskSchema>
+
+export type updateTaskInput = z.TypeOf<typeof updateTaskSchema>
 
 export const getSingleTaskSchema = z.object({
   taskId: z.string().cuid()
 })
+
 
 export const deleteTaskSchema = z.object({
   taskId: z.string().cuid()
