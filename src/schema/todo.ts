@@ -10,8 +10,8 @@ export type CreateTaskSchema = z.TypeOf<typeof createTaskSchema>
 
 export const updateTaskSchema = z.object({
   taskId: z.string().cuid(),
-  title: z.string().max(20),
-  body: z.string().max(5)
+  title: z.string().min(5).max(20),
+  body: z.string().max(20)
 })
 
 
