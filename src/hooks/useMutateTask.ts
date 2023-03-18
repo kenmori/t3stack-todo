@@ -30,7 +30,7 @@ export default function useMutateTask() {
       const previousTodos = utils.todo.getTasks.getData() // 既存のtaskのcacheデータを取得
       if(previousTodos){
         utils.todo.getTasks.setData(
-          previousTodos.filter((task) => (task.id === variables.taskId))
+          previousTodos.filter((task) => (task.id !== variables.taskId))
         )
       }
       reset()

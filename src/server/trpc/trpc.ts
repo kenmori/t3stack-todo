@@ -1,7 +1,7 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import type { Context } from "./context";
 import superjson from "superjson";
-
+import { ZodError } from "zod";
 // インスタンスを生成している
 export const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -21,7 +21,7 @@ export const t = initTRPC.context<Context>().create({
 
 // t.procedure サーバーサイドのfunctionを作っていくことができる。useを使ってミドルウェアを使っている
 export const authedProcedure = t.procedure.use(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
+  if (!ctx.session) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
